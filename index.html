@@ -280,7 +280,18 @@ tr:hover td { background: #13182280; }
 <script>
 // ── STATE ──────────────────────────────────────────────
 const STORAGE_KEY = 'tender-index-records';
-let records = [];
+let records = [
+  {
+    date: "2026-05-15",
+    total: 87,
+    high: 31,
+    mid: 40,
+    low: 16,
+    urgent: 31,
+    budget: 106585,
+    summary: "114年開刀房及ICU空調箱汰換（國立臺灣大學醫學院附設醫院新竹臺大分院）、新北市政府第二行政中心聯合服務中心裝修工程（新北市政府採購處）",
+    filename: "tender-20260515.html"
+  },];
 let sortKey = 'date';
 let sortDir = 'desc';
 let activeFilter = 'all';
