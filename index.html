@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>標案配發索引｜每日報表總覽</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI','PingFang TC','Microsoft JhengHei',sans-serif;
+  background: #0f1117; color: #e2e8f0;
+  padding: 24px; min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: linear-gradient(135deg, #0d1f3c 0%, #1a2744 100%);
+  border: 1px solid #1e3a6e; border-radius: 12px;
+  padding: 22px 28px; margin-bottom: 20px;
+  display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px;
+}
+.header-left h1 { font-size: 1.4rem; color: #60a5fa; }
+.header-left p  { font-size: 0.82rem; color: #64748b; margin-top: 5px; }
+.header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.today-badge {
+  background: #1e3a5f; border: 1px solid #3b82f6;
+  border-radius: 20px; padding: 5px 16px;
+  font-size: 0.82rem; color: #93c5fd;
+}
+.add-btn {
+  background: #1e3a5f; border: 1px solid #3b82f6;
+  color: #93c5fd; border-radius: 8px;
+  padding: 8px 18px; font-size: 0.85rem;
+  cursor: pointer; transition: all .15s;
+  font-family: inherit;
+}
+.add-btn:hover { background: #2d4f7c; }
+
+/* ── STATS ── */
+.stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+@media(max-width:700px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+.stat { background:#161b27; border:1px solid #1e2d45; border-radius:8px; padding:14px 16px; text-align:center; }
+.stat .val { font-size:1.8rem; font-weight:700; }
+.stat .val.blue   { color:#60a5fa; }
+.stat .val.green  { color:#4ade80; }
+.stat .val.yellow { color:#facc15; }
+.stat .val.orange { color:#fb923c; }
+.stat .lbl { font-size:0.73rem; color:#64748b; margin-top:3px; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  align-items: center; margin-bottom: 16px;
+}
+.filter-bar input {
+  flex: 1; min-width: 180px;
+  background: #161b27; border: 1px solid #1e2d45;
+  border-radius: 8px; padding: 8px 14px;
+  color: #e2e8f0; font-size: 0.84rem; font-family: inherit;
+  outline: none;
+}
+.filter-bar input:focus { border-color: #3b82f6; }
+.filter-bar input::placeholder { color: #475569; }
+.chip {
+  font-size: 0.78rem; padding: 6px 14px; border-radius: 20px;
+  cursor: pointer; border: 1px solid #1e2d45;
+  background: #161b27; color: #475569; transition: all .15s;
+  user-select: none;
+}
+.chip.active { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
+
+/* ── TABLE ── */
+.table-wrap { border-radius: 10px; border: 1px solid #1e2d45; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: #111827; }
+th {
+  padding: 11px 14px; text-align: left;
+  font-size: 0.74rem; font-weight:700; color: #64748b;
+  letter-spacing:.06em; text-transform:uppercase;
+  white-space: nowrap; border-bottom: 1px solid #1e2d45;
+  cursor: pointer; user-select: none;
+}
+th:hover { color: #94a3b8; }
+th.sort-asc::after  { content: ' ▲'; color: #3b82f6; }
+th.sort-desc::after { content: ' ▼'; color: #3b82f6; }
+td { padding: 12px 14px; border-bottom: 1px solid #111827; font-size: 0.84rem; color: #cbd5e1; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #13182280; }
+
+.date-cell { font-weight: 600; color: #e2e8f0; white-space: nowrap; }
+.date-sub  { font-size: 0.73rem; color: #475569; margin-top: 2px; }
+
+.tag-high   { display:inline-flex;align-items:center;gap:3px;color:#4ade80;background:#14532d33;border:1px solid #22c55e55;border-radius:4px;padding:2px 8px;font-size:0.75rem;font-weight:600; }
+.tag-mid    { display:inline-flex;align-items:center;gap:3px;color:#facc15;background:#71391233;border:1px solid #ca8a0455;border-radius:4px;padding:2px 8px;font-size:0.75rem;font-weight:600; }
+.tag-low    { display:inline-flex;align-items:center;gap:3px;color:#f87171;background:#7f1d1d33;border:1px solid #ef444455;border-radius:4px;padding:2px 8px;font-size:0.75rem;font-weight:600; }
+.tag-urgent { display:inline-block;font-size:0.68rem;background:#7f1d1d;color:#fca5a5;border-radius:3px;padding:1px 6px;margin-left:4px; }
+
+.budget-total { color:#fbbf24; font-weight:600; }
+.keywords { display:flex; flex-wrap:wrap; gap:4px; }
+.kw { font-size:0.71rem; background:#1e293b; color:#7dd3fc; border:1px solid #0369a133; border-radius:3px; padding:1px 6px; }
+.open-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  color:#60a5fa; text-decoration:none;
+  font-size:0.8rem; border:1px solid #1e3a5f;
+  border-radius:6px; padding:5px 12px; white-space:nowrap; transition:all .15s;
+  background: transparent; cursor: pointer; font-family: inherit;
+}
+.open-btn:hover { background:#1e3a5f; }
+.del-btn {
+  background:transparent; border:none; cursor:pointer;
+  color:#475569; font-size:1rem; padding:4px 8px;
+  border-radius:4px; transition:all .15s;
+}
+.del-btn:hover { color:#f87171; background:#7f1d1d33; }
+
+.empty-state {
+  text-align:center; padding:60px 20px;
+  color:#475569; font-size:0.9rem;
+}
+.empty-state .icon { font-size:2.5rem; margin-bottom:12px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display:none; position:fixed; inset:0;
+  background:#00000099; z-index:100;
+  align-items:center; justify-content:center;
+}
+.modal-overlay.show { display:flex; }
+.modal {
+  background:#161b27; border:1px solid #1e3a5f;
+  border-radius:12px; padding:24px; width:480px; max-width:95vw;
+}
+.modal h3 { font-size:1rem; color:#60a5fa; margin-bottom:18px; }
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:0.78rem; color:#64748b; margin-bottom:5px; text-transform:uppercase; letter-spacing:.05em; }
+.form-group input, .form-group select {
+  width:100%; background:#0f1117; border:1px solid #1e2d45;
+  border-radius:6px; padding:9px 12px;
+  color:#e2e8f0; font-size:0.84rem; font-family:inherit; outline:none;
+}
+.form-group input:focus, .form-group select:focus { border-color:#3b82f6; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.modal-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }
+.btn-cancel { background:transparent; border:1px solid #1e2d45; color:#64748b; border-radius:6px; padding:8px 18px; cursor:pointer; font-family:inherit; font-size:0.84rem; }
+.btn-cancel:hover { border-color:#475569; color:#94a3b8; }
+.btn-save { background:#1e3a5f; border:1px solid #3b82f6; color:#93c5fd; border-radius:6px; padding:8px 18px; cursor:pointer; font-family:inherit; font-size:0.84rem; }
+.btn-save:hover { background:#2d4f7c; }
+
+/* ── TOAST ── */
+.toast {
+  position:fixed; bottom:24px; right:24px;
+  background:#14532d; border:1px solid #22c55e;
+  color:#86efac; border-radius:8px; padding:10px 18px;
+  font-size:0.82rem; opacity:0; transition:opacity .3s;
+  pointer-events:none; z-index:200;
+}
+.toast.show { opacity:1; }
+
+/* ── FOOTER ── */
+.footer { margin-top:20px; font-size:0.74rem; color:#374151; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>📂 標案配發索引</h1>
+    <p>每日報表總覽｜關鍵字：裝修 / 改善 / 整修 / 裝潢 / 汰換｜北部工程類</p>
+  </div>
+  <div class="header-right">
+    <div class="today-badge" id="todayBadge">📅 載入中…</div>
+    <button class="add-btn" onclick="openModal()">＋ 新增今日報表</button>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="val blue" id="statTotal">0</div><div class="lbl">累計報表數</div></div>
+  <div class="stat"><div class="val green" id="statHigh">0</div><div class="lbl">🟢 高潛力累計</div></div>
+  <div class="stat"><div class="val yellow" id="statMid">0</div><div class="lbl">🟡 中潛力累計</div></div>
+  <div class="stat"><div class="val orange" id="statUrgent">0</div><div class="lbl">🔥 緊急累計</div></div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <input type="text" id="searchInput" placeholder="🔍 搜尋日期、摘要…" oninput="renderTable()">
+  <span class="chip active" data-filter="all"    onclick="setFilter(this)">全部</span>
+  <span class="chip"        data-filter="high"   onclick="setFilter(this)">🟢 有高潛力</span>
+  <span class="chip"        data-filter="urgent" onclick="setFilter(this)">🔥 有緊急</span>
+</div>
+
+<!-- TABLE -->
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortBy('date')">日期</th>
+        <th onclick="sortBy('total')">總件數</th>
+        <th onclick="sortBy('high')">🟢 高</th>
+        <th onclick="sortBy('mid')">🟡 中</th>
+        <th onclick="sortBy('low')">🔴 低</th>
+        <th onclick="sortBy('urgent')">🔥 緊急</th>
+        <th>預算總額</th>
+        <th>摘要</th>
+        <th>報表</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+<div class="empty-state" id="emptyState" style="display:none">
+  <div class="icon">📋</div>
+  <div>尚無報表紀錄，點擊右上角「＋ 新增今日報表」開始建立</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3>＋ 新增每日配發報表</h3>
+    <div class="form-group">
+      <label>報表日期</label>
+      <input type="date" id="inputDate">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>總件數</label>
+        <input type="number" id="inputTotal" min="0" placeholder="12">
+      </div>
+      <div class="form-group">
+        <label>🔥 緊急件數（7天內）</label>
+        <input type="number" id="inputUrgent" min="0" placeholder="3">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>🟢 高潛力</label>
+        <input type="number" id="inputHigh" min="0" placeholder="4">
+      </div>
+      <div class="form-group">
+        <label>🟡 中潛力</label>
+        <input type="number" id="inputMid" min="0" placeholder="5">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>🔴 低潛力</label>
+        <input type="number" id="inputLow" min="0" placeholder="3">
+      </div>
+      <div class="form-group">
+        <label>預算總額（萬元）</label>
+        <input type="number" id="inputBudget" min="0" placeholder="9543">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>今日摘要（選填）</label>
+      <input type="text" id="inputSummary" placeholder="例：桃園衛生中心裝修緊急、新北市整修本週">
+    </div>
+    <div class="form-group">
+      <label>報表檔名（Google Drive 路徑）</label>
+      <input type="text" id="inputFilename" placeholder="tender-20260515.html">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">取消</button>
+      <button class="btn-save" onclick="saveRecord()">✅ 儲存</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>📦 資料來源：web.pcc.gov.tw × taiwanbuying.com.tw ｜ 篩選：北部 + 工程類 + 排除最有利標</span>
+  <span id="footerUpdated"></span>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────
+const STORAGE_KEY = 'tender-index-records';
+let records = [];
+let sortKey = 'date';
+let sortDir = 'desc';
+let activeFilter = 'all';
+
+// ── STORAGE ────────────────────────────────────────────
+async function loadRecords() {
+  try {
+    const result = await window.storage.get(STORAGE_KEY);
+    records = result ? JSON.parse(result.value) : [];
+  } catch {
+    records = [];
+  }
+  // 若無資料，預載今日示範
+  if (records.length === 0) {
+    records = [{
+      id: 'demo-1',
+      date: '2026-05-15',
+      total: 7, high: 3, mid: 3, low: 1, urgent: 2,
+      budget: 6960,
+      summary: '桃園衛生中心裝修緊急（4天）、新北市整修本週',
+      filename: 'tender-20260515.html',
+      createdAt: new Date().toISOString()
+    }];
+    await saveToStorage();
+  }
+}
+
+async function saveToStorage() {
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify(records));
+  } catch(e) { console.error('Storage error', e); }
+}
+
+// ── RENDER ─────────────────────────────────────────────
+function renderTable() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+
+  let filtered = records.filter(r => {
+    const matchSearch = !q ||
+      r.date.includes(q) ||
+      (r.summary || '').toLowerCase().includes(q) ||
+      (r.filename || '').toLowerCase().includes(q);
+    const matchFilter =
+      activeFilter === 'all' ||
+      (activeFilter === 'high'   && r.high > 0) ||
+      (activeFilter === 'urgent' && r.urgent > 0);
+    return matchSearch && matchFilter;
+  });
+
+  // sort
+  filtered.sort((a, b) => {
+    let av = a[sortKey] ?? a.date;
+    let bv = b[sortKey] ?? b.date;
+    if (typeof av === 'string') av = av.toLowerCase();
+    if (typeof bv === 'string') bv = bv.toLowerCase();
+    if (av < bv) return sortDir === 'asc' ? -1 : 1;
+    if (av > bv) return sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  document.getElementById('emptyState').style.display = filtered.length === 0 ? 'block' : 'none';
+
+  filtered.forEach(r => {
+    const d = new Date(r.date);
+    const weekdays = ['日','一','二','三','四','五','六'];
+    const weekday = weekdays[d.getDay()];
+    const isToday = r.date === todayStr();
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <div class="date-cell">${r.date}${isToday ? ' <span style="font-size:.67rem;background:#1e3a5f;color:#93c5fd;border:1px solid #3b82f6;border-radius:3px;padding:1px 6px;">今日</span>' : ''}</div>
+        <div class="date-sub">（週${weekday}）</div>
+      </td>
+      <td><strong style="color:#e2e8f0">${r.total}</strong> 件</td>
+      <td>${r.high > 0 ? `<span class="tag-high">🟢 ${r.high}</span>` : '<span style="color:#374151">—</span>'}</td>
+      <td>${r.mid  > 0 ? `<span class="tag-mid">🟡 ${r.mid}</span>`   : '<span style="color:#374151">—</span>'}</td>
+      <td>${r.low  > 0 ? `<span class="tag-low">🔴 ${r.low}</span>`   : '<span style="color:#374151">—</span>'}</td>
+      <td>${r.urgent > 0 ? `<span style="color:#fb923c;font-weight:600;">🔥 ${r.urgent}</span>` : '<span style="color:#374151">—</span>'}</td>
+      <td><span class="budget-total">${r.budget ? Number(r.budget).toLocaleString() + '萬' : '—'}</span></td>
+      <td style="max-width:220px;color:#94a3b8;font-size:0.79rem;">${r.summary || '—'}</td>
+      <td>
+        ${r.filename
+          ? `<button class="open-btn" onclick="openFile('${r.filename}')">📄 ${r.filename}</button>`
+          : '<span style="color:#374151">—</span>'}
+      </td>
+      <td><button class="del-btn" onclick="deleteRecord('${r.id}')" title="刪除">🗑</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  updateStats();
+  updateSortHeaders();
+}
+
+function updateStats() {
+  const totals = records.reduce((acc, r) => ({
+    total: acc.total + 1,
+    high: acc.high + (r.high || 0),
+    mid: acc.mid + (r.mid || 0),
+    urgent: acc.urgent + (r.urgent || 0)
+  }), { total: 0, high: 0, mid: 0, urgent: 0 });
+
+  document.getElementById('statTotal').textContent  = totals.total;
+  document.getElementById('statHigh').textContent   = totals.high;
+  document.getElementById('statMid').textContent    = totals.mid;
+  document.getElementById('statUrgent').textContent = totals.urgent;
+}
+
+function updateSortHeaders() {
+  document.querySelectorAll('th').forEach(th => {
+    th.classList.remove('sort-asc','sort-desc');
+  });
+  const ths = document.querySelectorAll('th');
+  const keyMap = ['date','total','high','mid','low','urgent'];
+  keyMap.forEach((k, i) => {
+    if (k === sortKey) {
+      ths[i].classList.add(sortDir === 'asc' ? 'sort-asc' : 'sort-desc');
+    }
+  });
+}
+
+// ── SORT / FILTER ──────────────────────────────────────
+function sortBy(key) {
+  if (sortKey === key) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+  else { sortKey = key; sortDir = key === 'date' ? 'desc' : 'desc'; }
+  renderTable();
+}
+
+function setFilter(el) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  activeFilter = el.dataset.filter;
+  renderTable();
+}
+
+// ── MODAL ──────────────────────────────────────────────
+function openModal() {
+  document.getElementById('inputDate').value     = todayStr();
+  document.getElementById('inputTotal').value    = '';
+  document.getElementById('inputUrgent').value   = '';
+  document.getElementById('inputHigh').value     = '';
+  document.getElementById('inputMid').value      = '';
+  document.getElementById('inputLow').value      = '';
+  document.getElementById('inputBudget').value   = '';
+  document.getElementById('inputSummary').value  = '';
+  document.getElementById('inputFilename').value = `tender-${todayStr().replace(/-/g,'')}.html`;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+async function saveRecord() {
+  const date = document.getElementById('inputDate').value;
+  if (!date) { showToast('請填入報表日期', true); return; }
+
+  const rec = {
+    id: Date.now().toString(),
+    date,
+    total:    parseInt(document.getElementById('inputTotal').value)  || 0,
+    urgent:   parseInt(document.getElementById('inputUrgent').value) || 0,
+    high:     parseInt(document.getElementById('inputHigh').value)   || 0,
+    mid:      parseInt(document.getElementById('inputMid').value)    || 0,
+    low:      parseInt(document.getElementById('inputLow').value)    || 0,
+    budget:   parseInt(document.getElementById('inputBudget').value) || 0,
+    summary:  document.getElementById('inputSummary').value.trim(),
+    filename: document.getElementById('inputFilename').value.trim(),
+    createdAt: new Date().toISOString()
+  };
+
+  // 避免同日期重複
+  const exists = records.find(r => r.date === date);
+  if (exists) {
+    Object.assign(exists, rec);
+    exists.id = exists.id; // 保留原 id
+  } else {
+    records.push(rec);
+  }
+
+  await saveToStorage();
+  closeModal();
+  renderTable();
+  showToast(`✅ ${date} 報表已儲存`);
+  document.getElementById('footerUpdated').textContent = `最後更新：${new Date().toLocaleString('zh-TW')}`;
+}
+
+async function deleteRecord(id) {
+  if (!confirm('確定要刪除這筆紀錄？')) return;
+  records = records.filter(r => r.id !== id);
+  await saveToStorage();
+  renderTable();
+  showToast('🗑 已刪除');
+}
+
+function openFile(filename) {
+  window.open('https://ormachang-git.github.io/tender-reports/reports/' + filename, '_blank');
+}
+
+// ── UTILS ──────────────────────────────────────────────
+function todayStr() {
+  const d = new Date();
+  return d.toLocaleDateString('sv-SE'); // YYYY-MM-DD
+}
+
+function showToast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = isError ? '#7f1d1d' : '#14532d';
+  t.style.borderColor = isError ? '#ef4444' : '#22c55e';
+  t.style.color = isError ? '#fca5a5' : '#86efac';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── INIT ───────────────────────────────────────────────
+(async () => {
+  document.getElementById('todayBadge').textContent = `📅 ${todayStr()}`;
+  document.getElementById('footerUpdated').textContent = `最後更新：${new Date().toLocaleString('zh-TW')}`;
+  await loadRecords();
+  renderTable();
+})();
+</script>
+</body>
+</html>
