@@ -210,21 +210,13 @@ let records = [
     mid: 57,
     low: 4,
     urgent: 73,
-    priority: 8,
+    priority: 0,
     budget: 114002,
     summary: "教學大樓西側老舊廁所整修工程（桃園市大溪區福安國民小學）、115年度建國分隊中央空調設備汰換整修工程（臺北市政府消防局）",
     filename: "tender-20260521.html",
-    priority_items: [
-      { name:"新北市三芝區後厝芝蘭公園貨櫃市集觀海平台環境改善工程", org:"新北市三芝區公所", case_no:"115d007", deadline:"115/05/29", deadline_iso:"2026-05-29", days_left:8, budget:"924", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2NjU=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" },
-      { name:"美術系特殊教室整修工程", org:"國立臺北藝術大學", case_no:"C115028", deadline:"115/06/01", deadline_iso:"2026-06-01", days_left:11, budget:"878", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM1MTg=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" },
-      { name:"115年度北門智慧圖書館空間裝修工程", org:"臺北市立圖書館", case_no:"11507HY", deadline:"115/06/03", deadline_iso:"2026-06-03", days_left:13, budget:"315", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYzMDM=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" },
-      { name:"115年臺北市內湖行政中心1樓調解會空間整修工程", org:"臺北市內湖區公所", case_no:"1151009", deadline:"115/06/03", deadline_iso:"2026-06-03", days_left:13, budget:"434", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY3MTc=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" },
-      { name:"本院醫療大樓空調箱汰換、門診手術室濕度改善及門急診大樓頂樓空調機房電力改善工程", org:"衛生福利部桃園醫院", case_no:"114TY1202", deadline:"115/06/05", deadline_iso:"2026-06-05", days_left:15, budget:"1672", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM1MDc=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" },
-      { name:"八德區霖園公園遮雨棚設施改善工程", org:"桃園市八德區公所", case_no:"BB1150520A", deadline:"115/06/05", deadline_iso:"2026-06-05", days_left:15, budget:"434", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYyODE=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" },
-      { name:"八德區豐德公園及公二公園步道改善工程", org:"桃園市八德區公所", case_no:"BB1150520", deadline:"115/06/05", deadline_iso:"2026-06-05", days_left:15, budget:"1454", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYxODM=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" },
-      { name:"楊梅區富岡運動公園籃球場改善工程", org:"桃園市楊梅區公所", case_no:"YM-115010", deadline:"115/06/08", deadline_iso:"2026-06-08", days_left:18, budget:"521", link:"https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjcxMTk=", hits:"關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗" }
-    ]
+    priority_items: []
   },
+  
   
   
   
@@ -436,9 +428,27 @@ renderTable();
 </style>
 <script>
 (function(){
-  var __PRI_LABEL="2026 Q2 北部公家室內裝修甜蜜點";
-  var __PRI_DESC="關鍵字：室內裝修 / 裝修工程 / 整修工程 / 改善工程 ｜ 預算 300–3000 萬 ｜ 截止 7–25 天 ｜ 機關含：國小、國中、高中、高工、高商、大學…等 13 類 ｜ 排除：軍、監獄、看守所";
+  var __PRI_LABEL="北捷復興崗";
+  var __PRI_DESC="關鍵字：復興崗 ｜ 機關含：臺北大眾捷運";
+  var __PRI_KW=["復興崗"];
+  var __PRI_ORG_INC=["臺北大眾捷運"];
+  var __PRI_ORG_EXC=[];
+  var __PRI_BMIN=0;  // 萬，0 = 不啟用
+  var __PRI_BMAX=0;  // 萬，0 = 不啟用
+  var __PRI_DMIN=null;     // null = 不啟用
+  var __PRI_DMAX=null;     // null = 不啟用
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+  function matchesCurrentRule(p){
+    var name=p.name||'',org=p.org||'';
+    if(__PRI_KW.length && !__PRI_KW.some(function(k){return name.indexOf(k)!==-1;}))return false;
+    if(__PRI_ORG_INC.length && !__PRI_ORG_INC.some(function(o){return org.indexOf(o)!==-1;}))return false;
+    if(__PRI_ORG_EXC.length && __PRI_ORG_EXC.some(function(o){return org.indexOf(o)!==-1;}))return false;
+    var budget=parseFloat(p.budget)||0;
+    if(__PRI_BMIN && budget<__PRI_BMIN)return false;
+    if(__PRI_BMAX && budget>__PRI_BMAX)return false;
+    // days_left 是 record 寫入時的快照，已不準；不在 JS 端用 days 過濾。
+    return true;
+  }
   function init(){
     if(typeof records==='undefined')return;
     var today=new Date().toISOString().slice(0,10);
@@ -449,6 +459,7 @@ renderTable();
         var key=p.case_no||(p.name+'|'+p.org);
         if(seen[key])return;
         if(p.deadline_iso&&p.deadline_iso<today)return;
+        if(!matchesCurrentRule(p))return;  // 按當前規則過濾，避免換規則後舊資料殘留
         seen[key]=true;
         p.report_date=r.date;
         p.report_filename=r.filename;
