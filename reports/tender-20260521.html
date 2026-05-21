@@ -12,7 +12,8 @@ body { font-family:'Segoe UI','Microsoft JhengHei',sans-serif; background:#0f111
 .header-left p { color:#64748b; font-size:0.8rem; margin-top:4px; }
 .home-btn { display:inline-flex; align-items:center; gap:6px; color:#93c5fd; background:#1e3a5f; border:1px solid #3b82f6; border-radius:8px; padding:7px 16px; font-size:0.82rem; text-decoration:none; white-space:nowrap; transition:background .15s; }
 .home-btn:hover { background:#2d4f7c; }
-.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+.stats { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:16px; }
+@media (max-width:720px) { .stats { grid-template-columns:repeat(2,1fr); } }
 .stat { background:#161b27; border:1px solid #1e2d45; border-radius:8px; padding:12px; text-align:center; }
 .stat .val { font-size:1.6rem; font-weight:700; }
 .stat .lbl { font-size:0.72rem; color:#64748b; margin-top:2px; }
@@ -34,6 +35,24 @@ tr:hover td { background:#13182280; }
 .link-btn { color:#60a5fa; text-decoration:none; font-size:0.79rem; border:1px solid #1e3a5f; border-radius:4px; padding:3px 9px; display:inline-block; }
 .notice { background:#1c1a0a; border:1px solid #854d0e; border-radius:7px; padding:11px 16px; font-size:0.79rem; color:#fde68a; margin-top:14px; line-height:1.7; }
 .footer { margin-top:14px; font-size:0.73rem; color:#374151; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
+.pri-block { background:linear-gradient(135deg,#2a1f08,#3b2a0a); border:1px solid #b8860b; border-radius:10px; padding:14px 18px; margin-bottom:16px; box-shadow:0 0 18px #b8860b22; }
+.pri-block-empty { display:flex; align-items:center; gap:14px; }
+.pri-block-head { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+.pri-block-title { color:#fbbf24; font-size:1rem; font-weight:700; margin-right:10px; }
+.pri-block-sub { color:#fde68a; font-size:0.8rem; }
+.pri-block-rule { color:#a78b4f; font-size:0.72rem; }
+.pri-card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; }
+.pri-card { background:#1a1308; border:1px solid #92651655; border-radius:7px; padding:10px 12px; text-decoration:none; display:block; transition:border-color .15s,transform .15s; }
+.pri-card:hover { border-color:#fbbf24; transform:translateY(-1px); }
+.pri-card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:5px; }
+.pri-card-name { color:#fde68a; font-weight:600; font-size:0.86rem; line-height:1.35; flex:1; }
+.pri-card-days { color:#f87171; background:#7f1d1d33; border:1px solid #ef444444; border-radius:3px; padding:1px 6px; font-size:0.7rem; white-space:nowrap; }
+.pri-card-meta { display:flex; justify-content:space-between; gap:8px; font-size:0.76rem; color:#94a3b8; margin-bottom:4px; }
+.pri-card-budget { color:#fbbf24; font-weight:600; }
+.pri-card-hits { color:#a78b4f; font-size:0.7rem; }
+.star-tag { margin-left:4px; }
+.pri-row td { background:#1a130833; }
+.pri-row:hover td { background:#2a1f0866; }
 </style>
 </head>
 <body>
@@ -46,9 +65,109 @@ tr:hover td { background:#13182280; }
 </div>
 <div class="stats">
   <div class="stat"><div class="val" style="color:#60a5fa">134</div><div class="lbl">今日命中</div></div>
+  <div class="stat"><div class="val" style="color:#fbbf24">8</div><div class="lbl">⭐ 期間最優先</div></div>
   <div class="stat"><div class="val" style="color:#4ade80">74</div><div class="lbl">🟢 高潛力</div></div>
   <div class="stat"><div class="val" style="color:#facc15">56</div><div class="lbl">🟡 中潛力</div></div>
   <div class="stat"><div class="val" style="color:#fb923c">74</div><div class="lbl">🔥 7天內截止</div></div>
+</div>
+<div class="pri-block">
+  <div class="pri-block-head">
+    <div>
+      <span class="pri-block-title">⭐ 期間最優先案件</span>
+      <span class="pri-block-sub">2026 Q2 北部公家室內裝修甜蜜點 · 命中 8 筆</span>
+    </div>
+    <span class="pri-block-rule">關鍵字 + 指定機關 + 預算 300–3000 萬 + 截止 7–25 天</span>
+  </div>
+  <div class="pri-card-grid">
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2NjU=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 新北市三芝區後厝芝蘭公園貨櫃市集觀海平台環境改善工程</span>
+          <span class="pri-card-days">剩 8 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>新北市三芝區公所</span>
+          <span class="pri-card-budget">924 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/05/29</div>
+      </a>
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM1MTg=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 美術系特殊教室整修工程</span>
+          <span class="pri-card-days">剩 11 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>國立臺北藝術大學</span>
+          <span class="pri-card-budget">878 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/06/01</div>
+      </a>
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYzMDM=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 115年度北門智慧圖書館空間裝修工程</span>
+          <span class="pri-card-days">剩 13 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>臺北市立圖書館</span>
+          <span class="pri-card-budget">315 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/06/03</div>
+      </a>
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY3MTc=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 115年臺北市內湖行政中心1樓調解會空間整修工程</span>
+          <span class="pri-card-days">剩 13 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>臺北市內湖區公所</span>
+          <span class="pri-card-budget">434 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/06/03</div>
+      </a>
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM1MDc=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 本院醫療大樓空調箱汰換、門診手術室濕度改善及門急診大樓頂樓空調機房電力改善工程</span>
+          <span class="pri-card-days">剩 15 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>衛生福利部桃園醫院</span>
+          <span class="pri-card-budget">1672 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/06/05</div>
+      </a>
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYyODE=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 八德區霖園公園遮雨棚設施改善工程</span>
+          <span class="pri-card-days">剩 15 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>桃園市八德區公所</span>
+          <span class="pri-card-budget">434 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/06/05</div>
+      </a>
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYxODM=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 八德區豐德公園及公二公園步道改善工程</span>
+          <span class="pri-card-days">剩 15 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>桃園市八德區公所</span>
+          <span class="pri-card-budget">1454 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/06/05</div>
+      </a>
+      <a class="pri-card" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjcxMTk=" target="_blank">
+        <div class="pri-card-head">
+          <span class="pri-card-name">⭐ 楊梅區富岡運動公園籃球場改善工程</span>
+          <span class="pri-card-days">剩 18 天</span>
+        </div>
+        <div class="pri-card-meta">
+          <span>桃園市楊梅區公所</span>
+          <span class="pri-card-budget">521 萬</span>
+        </div>
+        <div class="pri-card-hits">關鍵字 · 指定機關 · 甜蜜預算 · 黃金截止窗 · 公開招標 · 截止 115/06/08</div>
+      </a>
+  </div>
 </div>
 <div class="table-wrap">
 <table>
@@ -119,6 +238,39 @@ tr:hover td { background:#13182280; }
       <td>115/05/25<div><span class="days-u">剩 4 天</span></div></td>
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjA4MTA=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">竹北市隘口公園環境改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣竹北市公所</div>
+      </td>
+      <td><span class="budget">2128萬</span></td>
+      <td>115/05/25<div><span class="days-u">剩 4 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2MTY=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">演藝廳舞臺、燈光、音響及空調改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市南港區胡適國民小學</div>
+      </td>
+      <td><span class="budget">506萬</span></td>
+      <td>115/05/25<div><span class="days-u">剩 4 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ4Mjk=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度普通教室環境改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市文山區木柵國民小學</div>
+      </td>
+      <td><span class="budget">273萬</span></td>
+      <td>115/05/25<div><span class="days-u">剩 4 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ0MTM=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
       <td><span class="tag-h">🟢 高潛力</span></td>
@@ -310,39 +462,6 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-h">🟢 高潛力</span></td>
       <td>
-        <div style="color:#e2e8f0;font-weight:500">竹北市隘口公園環境改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣竹北市公所</div>
-      </td>
-      <td><span class="budget">2128萬</span></td>
-      <td>115/05/25<div><span class="days-u">剩 4 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2MTY=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">演藝廳舞臺、燈光、音響及空調改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市南港區胡適國民小學</div>
-      </td>
-      <td><span class="budget">506萬</span></td>
-      <td>115/05/25<div><span class="days-u">剩 4 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ4Mjk=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度普通教室環境改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市文山區木柵國民小學</div>
-      </td>
-      <td><span class="budget">273萬</span></td>
-      <td>115/05/25<div><span class="days-u">剩 4 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ0MTM=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
         <div style="color:#e2e8f0;font-weight:500">115年度活動中心舞臺更新及燈具汰換工程<span class="urgent">🔥 緊急</span></div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市大安區銘傳國民小學</div>
       </td>
@@ -361,6 +480,61 @@ tr:hover td { background:#13182280; }
       <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMTU5MDc=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年平溪國小校舍漏水改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市平溪區平溪國民小學</div>
+      </td>
+      <td><span class="budget">90萬</span></td>
+      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQxMzg=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年新竹軍人忠靈祠電力設備改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹市殯葬管理所</div>
+      </td>
+      <td><span class="budget">150萬</span></td>
+      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2MjU=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">尖石鄉新樂村6鄰農路改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣尖石鄉公所</div>
+      </td>
+      <td><span class="budget">21萬</span></td>
+      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2MjQ=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年新竹軍人忠靈祠自來水管改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹市殯葬管理所</div>
+      </td>
+      <td><span class="budget">135萬</span></td>
+      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjUyNzk=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">新竹縣瑞峰國小辦理「活動中心冷氣設置及電力改善工程」工程採購案<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣竹東鎮瑞峰國民小學</div>
+      </td>
+      <td><span class="budget">316萬</span></td>
+      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ2NDc=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
       <td><span class="tag-h">🟢 高潛力</span></td>
@@ -574,105 +748,6 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-h">🟢 高潛力</span></td>
       <td>
-        <div style="color:#e2e8f0;font-weight:500">115年平溪國小校舍漏水改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市平溪區平溪國民小學</div>
-      </td>
-      <td><span class="budget">90萬</span></td>
-      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQxMzg=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年新竹軍人忠靈祠電力設備改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹市殯葬管理所</div>
-      </td>
-      <td><span class="budget">150萬</span></td>
-      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2MjU=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">尖石鄉新樂村6鄰農路改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣尖石鄉公所</div>
-      </td>
-      <td><span class="budget">21萬</span></td>
-      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2MjQ=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年新竹軍人忠靈祠自來水管改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹市殯葬管理所</div>
-      </td>
-      <td><span class="budget">135萬</span></td>
-      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjUyNzk=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">新竹縣瑞峰國小辦理「活動中心冷氣設置及電力改善工程」工程採購案<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣竹東鎮瑞峰國民小學</div>
-      </td>
-      <td><span class="budget">316萬</span></td>
-      <td>115/05/26<div><span class="days-u">剩 5 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ2NDc=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">教學大樓(電梯側)廁所整修工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">基隆市七堵區長興國民小學</div>
-      </td>
-      <td><span class="budget">338萬</span></td>
-      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY0MzM=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">114年度6號(男)廁所整修工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市信義區吳興國民小學</div>
-      </td>
-      <td><span class="budget">255萬</span></td>
-      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU4MzY=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年科學樓廁所整修工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立新民國民中學</div>
-      </td>
-      <td><span class="budget">141萬</span></td>
-      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ1MjY=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">114年望月樓廁所整修工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市三重區三光國民小學</div>
-      </td>
-      <td><span class="budget">539萬</span></td>
-      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjMzMjQ=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
         <div style="color:#e2e8f0;font-weight:500">115年度全校教室電源改善工程（第一期）採購案<span class="urgent">🔥 緊急</span></div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立明湖國民中學</div>
       </td>
@@ -750,6 +825,50 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-h">🟢 高潛力</span></td>
       <td>
+        <div style="color:#e2e8f0;font-weight:500">教學大樓(電梯側)廁所整修工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">基隆市七堵區長興國民小學</div>
+      </td>
+      <td><span class="budget">338萬</span></td>
+      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY0MzM=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">114年度6號(男)廁所整修工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市信義區吳興國民小學</div>
+      </td>
+      <td><span class="budget">255萬</span></td>
+      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU4MzY=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年科學樓廁所整修工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立新民國民中學</div>
+      </td>
+      <td><span class="budget">141萬</span></td>
+      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ1MjY=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">114年望月樓廁所整修工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市三重區三光國民小學</div>
+      </td>
+      <td><span class="budget">539萬</span></td>
+      <td>115/05/27<div><span class="days-u">剩 6 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjMzMjQ=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
         <div style="color:#e2e8f0;font-weight:500">115年度野柳國小海石樓階梯修繕及幼兒園門扇汰換工程採購案<span class="urgent">🔥 緊急</span></div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市萬里區野柳國民小學</div>
       </td>
@@ -757,6 +876,61 @@ tr:hover td { background:#13182280; }
       <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
       <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjUyNTY=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">幼兒園環境改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市桃園區西門國民小學</div>
+      </td>
+      <td><span class="budget">42萬</span></td>
+      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjcyNjA=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">幼兒園門窗改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市新屋區埔頂國民小學</div>
+      </td>
+      <td><span class="budget">120萬</span></td>
+      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY3ODY=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度數位總機系統設備改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市中正區螢橋國民小學</div>
+      </td>
+      <td><span class="budget">110萬</span></td>
+      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
+      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY1NzE=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度士林高商活動中心變電站改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立士林高級商業職業學校</div>
+      </td>
+      <td><span class="budget">906萬</span></td>
+      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjIwNzU=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-h">🟢 高潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">維桃園003-515三坑農路設施改善工程<span class="urgent">🔥 緊急</span></div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">農業部農村發展及水土保持署臺北分署</div>
+      </td>
+      <td><span class="budget">256萬</span></td>
+      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU5NDE=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
       <td><span class="tag-h">🟢 高潛力</span></td>
@@ -814,61 +988,6 @@ tr:hover td { background:#13182280; }
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM0OTE=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">幼兒園環境改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市桃園區西門國民小學</div>
-      </td>
-      <td><span class="budget">46萬</span></td>
-      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjcyNjA=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">幼兒園門窗改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市新屋區埔頂國民小學</div>
-      </td>
-      <td><span class="budget">120萬</span></td>
-      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY3ODY=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度數位總機系統設備改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市中正區螢橋國民小學</div>
-      </td>
-      <td><span class="budget">110萬</span></td>
-      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
-      <td style="font-size:0.78rem">公開取得報價單或企劃書</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY1NzE=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度士林高商活動中心變電站改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立士林高級商業職業學校</div>
-      </td>
-      <td><span class="budget">906萬</span></td>
-      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjIwNzU=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-h">🟢 高潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">維桃園003-515三坑農路設施改善工程<span class="urgent">🔥 緊急</span></div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">農業部農村發展及水土保持署臺北分署</div>
-      </td>
-      <td><span class="budget">256萬</span></td>
-      <td>115/05/28<div><span class="days-u">剩 7 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU5NDE=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
       <td>
         <div style="color:#e2e8f0;font-weight:500">115年度活動中心電梯汰換及防漏整修工程</div>
@@ -889,6 +1008,28 @@ tr:hover td { background:#13182280; }
       <td>115/05/29<div><span class="days-o">剩 8 天</span></div></td>
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjI4MTA=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr class="pri-row">
+      <td><span class="tag-m">🟡 中潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">新北市三芝區後厝芝蘭公園貨櫃市集觀海平台環境改善工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市三芝區公所</div>
+      </td>
+      <td><span class="budget">924萬</span></td>
+      <td>115/05/29<div><span class="days-o">剩 8 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2NjU=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">松羅溪上游支坑坑溝改善工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">農業部農村發展及水土保持署臺北分署</div>
+      </td>
+      <td><span class="budget">221萬</span></td>
+      <td>115/05/29<div><span class="days-o">剩 8 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ2NzU=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
@@ -937,28 +1078,6 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
       <td>
-        <div style="color:#e2e8f0;font-weight:500">新北市三芝區後厝芝蘭公園貨櫃市集觀海平台環境改善工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市三芝區公所</div>
-      </td>
-      <td><span class="budget">924萬</span></td>
-      <td>115/05/29<div><span class="days-o">剩 8 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU2NjU=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">松羅溪上游支坑坑溝改善工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">農業部農村發展及水土保持署臺北分署</div>
-      </td>
-      <td><span class="budget">221萬</span></td>
-      <td>115/05/29<div><span class="days-o">剩 8 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ2NzU=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
         <div style="color:#e2e8f0;font-weight:500">自強高工新校舍教學空間室內裝修工程採購</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣立自強國民中學</div>
       </td>
@@ -977,171 +1096,6 @@ tr:hover td { background:#13182280; }
       <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjA1NDM=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115行政樓A棟外牆屋簷、校門口及庭園花台整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立蘭州國民中學</div>
-      </td>
-      <td><span class="budget">405萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjczNjI=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度停車場及行政教學大樓前道路整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣立中正國民中學</div>
-      </td>
-      <td><span class="budget">228萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjczMjc=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">育菁樓1至5樓女生廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市立武陵高級中等學校</div>
-      </td>
-      <td><span class="budget">971萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY5MTU=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度「校舍油漆及牆面整修工程」</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市大園區五權國民小學</div>
-      </td>
-      <td><span class="budget">378萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3ODY=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">114年公立國民中小學老舊廁所整修工程計畫南山樓廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市桃園區大業國民小學</div>
-      </td>
-      <td><span class="budget">723萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ1MTI=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度忠孝樓2西側廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市大安區大安國民小學</div>
-      </td>
-      <td><span class="budget">586萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU5MDc=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度東陽樓男廁所整修工程暨普通教室環境改善工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市松山區西松國民小學</div>
-      </td>
-      <td><span class="budget">458萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3OTA=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">普通教室優化暨健康中心整修工程採購案</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市南港區成德國民小學</div>
-      </td>
-      <td><span class="budget">632萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjUzMTk=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">德恩樓老舊廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">基隆市七堵區堵南國民小學</div>
-      </td>
-      <td><span class="budget">292萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ5MDI=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">新北市新莊區裕民國小愛群樓西側廁所整修工程採購案</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市新莊區裕民國民小學</div>
-      </td>
-      <td><span class="budget">413萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQzNjI=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度教學大樓第一棟東側廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立大直高級中學</div>
-      </td>
-      <td><span class="budget">300萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM2MTE=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">前棟2樓至4樓男女廁所及無障礙廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立文山特殊教育學校</div>
-      </td>
-      <td><span class="budget">849萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ0NzU=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">龍潭區中隊辦公室及垃圾掩埋場辦公室等建築物耐震補強、防水暨內部整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市政府環境管理處</div>
-      </td>
-      <td><span class="budget">1769萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQzNjk=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度活動中心球場地板及周邊整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市士林區文昌國民小學</div>
-      </td>
-      <td><span class="budget">733萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQxOTk=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">美術系特殊教室整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">國立臺北藝術大學</div>
-      </td>
-      <td><span class="budget">878萬</span></td>
-      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM1MTg=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
@@ -1300,6 +1254,17 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
       <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度東陽樓男廁所整修工程暨普通教室環境改善工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市松山區西松國民小學</div>
+      </td>
+      <td><span class="budget">458萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3OTA=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
         <div style="color:#e2e8f0;font-weight:500">新竹縣115年度國民中(小)學活動中心(禮堂)冷氣裝設專案計畫 (第3、4梯次)及電力改善工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣立新埔國民中學</div>
       </td>
@@ -1333,24 +1298,156 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
       <td>
-        <div style="color:#e2e8f0;font-weight:500">花香樓東側壹貳樓老舊廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市大園區菓林國民小學</div>
+        <div style="color:#e2e8f0;font-weight:500">115行政樓A棟外牆屋簷、校門口及庭園花台整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立蘭州國民中學</div>
       </td>
-      <td><span class="budget">206萬</span></td>
-      <td>115/06/02<div><span class="days-o">剩 12 天</span></div></td>
+      <td><span class="budget">405萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
       <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY2MDk=" target="_blank">→ 查看</a></td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjczNjI=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
       <td>
-        <div style="color:#e2e8f0;font-weight:500">「114年公立國民中小學老舊廁所整修工程計畫」-第二棟東側廁所整修工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市八德區大安國民小學</div>
+        <div style="color:#e2e8f0;font-weight:500">115年度停車場及行政教學大樓前道路整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新竹縣立中正國民中學</div>
       </td>
-      <td><span class="budget">169萬</span></td>
-      <td>115/06/02<div><span class="days-o">剩 12 天</span></div></td>
+      <td><span class="budget">228萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
       <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU4NjU=" target="_blank">→ 查看</a></td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjczMjc=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">育菁樓1至5樓女生廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市立武陵高級中等學校</div>
+      </td>
+      <td><span class="budget">971萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY5MTU=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度「校舍油漆及牆面整修工程」</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市大園區五權國民小學</div>
+      </td>
+      <td><span class="budget">378萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3ODY=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">114年公立國民中小學老舊廁所整修工程計畫南山樓廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市桃園區大業國民小學</div>
+      </td>
+      <td><span class="budget">723萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ1MTI=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度忠孝樓2西側廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市大安區大安國民小學</div>
+      </td>
+      <td><span class="budget">586萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU5MDc=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">普通教室優化暨健康中心整修工程採購案</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市南港區成德國民小學</div>
+      </td>
+      <td><span class="budget">632萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjUzMTk=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">德恩樓老舊廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">基隆市七堵區堵南國民小學</div>
+      </td>
+      <td><span class="budget">292萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ5MDI=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">新北市新莊區裕民國小愛群樓西側廁所整修工程採購案</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市新莊區裕民國民小學</div>
+      </td>
+      <td><span class="budget">413萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQzNjI=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度教學大樓第一棟東側廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立大直高級中學</div>
+      </td>
+      <td><span class="budget">300萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM2MTE=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">前棟2樓至4樓男女廁所及無障礙廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立文山特殊教育學校</div>
+      </td>
+      <td><span class="budget">849萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQ0NzU=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">龍潭區中隊辦公室及垃圾掩埋場辦公室等建築物耐震補強、防水暨內部整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市政府環境管理處</div>
+      </td>
+      <td><span class="budget">1769萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQzNjk=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度活動中心球場地板及周邊整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市士林區文昌國民小學</div>
+      </td>
+      <td><span class="budget">733萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQxOTk=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr class="pri-row">
+      <td><span class="tag-m">🟡 中潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">美術系特殊教室整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">國立臺北藝術大學</div>
+      </td>
+      <td><span class="budget">878萬</span></td>
+      <td>115/06/01<div><span class="days-o">剩 11 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM1MTg=" target="_blank">→ 查看</a></td>
     </tr>
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
@@ -1388,6 +1485,28 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
       <td>
+        <div style="color:#e2e8f0;font-weight:500">花香樓東側壹貳樓老舊廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市大園區菓林國民小學</div>
+      </td>
+      <td><span class="budget">206萬</span></td>
+      <td>115/06/02<div><span class="days-o">剩 12 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjY2MDk=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">「114年公立國民中小學老舊廁所整修工程計畫」-第二棟東側廁所整修工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市八德區大安國民小學</div>
+      </td>
+      <td><span class="budget">169萬</span></td>
+      <td>115/06/02<div><span class="days-o">剩 12 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU4NjU=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr class="pri-row">
+      <td><span class="tag-m">🟡 中潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
+      <td>
         <div style="color:#e2e8f0;font-weight:500">115年度北門智慧圖書館空間裝修工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市立圖書館</div>
       </td>
@@ -1398,6 +1517,39 @@ tr:hover td { background:#13182280; }
     </tr>
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度新北市雙溪區步道及設施維護改善工程(開口合約)</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市雙溪區公所</div>
+      </td>
+      <td><span class="budget">243萬</span></td>
+      <td>115/06/03<div><span class="days-o">剩 13 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQxMjA=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年度附設幼兒園美田分班廚房修繕暨電力改善工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市金山區金山國民小學</div>
+      </td>
+      <td><span class="budget">159萬</span></td>
+      <td>115/06/03<div><span class="days-o">剩 13 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3Nzk=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr>
+      <td><span class="tag-m">🟡 中潛力</span></td>
+      <td>
+        <div style="color:#e2e8f0;font-weight:500">115年泉州綜合大樓建築物檢查缺失改善工程</div>
+        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市政府警察局中正第二分局</div>
+      </td>
+      <td><span class="budget">296萬</span></td>
+      <td>115/06/03<div><span class="days-o">剩 13 天</span></div></td>
+      <td style="font-size:0.78rem">公開招標</td>
+      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3NTA=" target="_blank">→ 查看</a></td>
+    </tr>
+    <tr class="pri-row">
+      <td><span class="tag-m">🟡 中潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
       <td>
         <div style="color:#e2e8f0;font-weight:500">115年臺北市內湖行政中心1樓調解會空間整修工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市內湖區公所</div>
@@ -1443,39 +1595,6 @@ tr:hover td { background:#13182280; }
     <tr>
       <td><span class="tag-m">🟡 中潛力</span></td>
       <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度新北市雙溪區步道及設施維護改善工程(開口合約)</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市雙溪區公所</div>
-      </td>
-      <td><span class="budget">243萬</span></td>
-      <td>115/06/03<div><span class="days-o">剩 13 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjQxMjA=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年度附設幼兒園美田分班廚房修繕暨電力改善工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">新北市金山區金山國民小學</div>
-      </td>
-      <td><span class="budget">159萬</span></td>
-      <td>115/06/03<div><span class="days-o">剩 13 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3Nzk=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
-        <div style="color:#e2e8f0;font-weight:500">115年泉州綜合大樓建築物檢查缺失改善工程</div>
-        <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市政府警察局中正第二分局</div>
-      </td>
-      <td><span class="budget">296萬</span></td>
-      <td>115/06/03<div><span class="days-o">剩 13 天</span></div></td>
-      <td style="font-size:0.78rem">公開招標</td>
-      <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjU3NTA=" target="_blank">→ 查看</a></td>
-    </tr>
-    <tr>
-      <td><span class="tag-m">🟡 中潛力</span></td>
-      <td>
         <div style="color:#e2e8f0;font-weight:500">115年度普通教室環境改善工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">臺北市內湖區東湖國民小學</div>
       </td>
@@ -1484,8 +1603,8 @@ tr:hover td { background:#13182280; }
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjcyNDI=" target="_blank">→ 查看</a></td>
     </tr>
-    <tr>
-      <td><span class="tag-l">🔴 低潛力</span></td>
+    <tr class="pri-row">
+      <td><span class="tag-l">🔴 低潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
       <td>
         <div style="color:#e2e8f0;font-weight:500">本院醫療大樓空調箱汰換、門診手術室濕度改善及門急診大樓頂樓空調機房電力改善工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">衛生福利部桃園醫院</div>
@@ -1495,8 +1614,8 @@ tr:hover td { background:#13182280; }
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjM1MDc=" target="_blank">→ 查看</a></td>
     </tr>
-    <tr>
-      <td><span class="tag-l">🔴 低潛力</span></td>
+    <tr class="pri-row">
+      <td><span class="tag-l">🔴 低潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
       <td>
         <div style="color:#e2e8f0;font-weight:500">八德區霖園公園遮雨棚設施改善工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市八德區公所</div>
@@ -1506,8 +1625,8 @@ tr:hover td { background:#13182280; }
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYyODE=" target="_blank">→ 查看</a></td>
     </tr>
-    <tr>
-      <td><span class="tag-l">🔴 低潛力</span></td>
+    <tr class="pri-row">
+      <td><span class="tag-l">🔴 低潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
       <td>
         <div style="color:#e2e8f0;font-weight:500">八德區豐德公園及公二公園步道改善工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市八德區公所</div>
@@ -1517,8 +1636,8 @@ tr:hover td { background:#13182280; }
       <td style="font-size:0.78rem">公開招標</td>
       <td><a class="link-btn" href="https://web.pcc.gov.tw/prkms/urlSelector/common/tpam?pk=NzEyMjYxODM=" target="_blank">→ 查看</a></td>
     </tr>
-    <tr>
-      <td><span class="tag-l">🔴 低潛力</span></td>
+    <tr class="pri-row">
+      <td><span class="tag-l">🔴 低潛力</span><span class="star-tag" title="期間最優先">⭐</span></td>
       <td>
         <div style="color:#e2e8f0;font-weight:500">楊梅區富岡運動公園籃球場改善工程</div>
         <div style="color:#94a3b8;font-size:0.77rem;margin-top:2px">桃園市楊梅區公所</div>
@@ -1540,7 +1659,7 @@ tr:hover td { background:#13182280; }
   • <b>照心樓（新大樓）廁所整修工程</b>（新竹縣新埔鎮照門國民小學）截止 115/05/22，剩 1 天，預算 177 萬，請立即備標。
 </div>
 <div class="footer">
-  <span>📦 資料來源：web.pcc.gov.tw ｜ 篩選：北部 + 工程類 + 排除最有利標 ｜ 預算總額：114006 萬</span>
+  <span>📦 資料來源：web.pcc.gov.tw ｜ 篩選：北部 + 工程類 + 排除最有利標 ｜ 預算總額：114002 萬</span>
   <span>📁 tender-20260521.html ｜ 🔗 https://ormachang-git.github.io/tender-reports/reports/tender-20260521.html</span>
 </div>
 </body>
